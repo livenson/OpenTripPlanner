@@ -72,8 +72,10 @@ public class GtfsLibrary {
             return TraverseMode.RAIL;
         } else if (routeType >= 500 && routeType < 700) { //Metro Service and Underground Service
             return TraverseMode.SUBWAY;
-        } else if (routeType >= 700 && routeType < 900) { //Bus Service and Trolleybus service
+        } else if (routeType >= 700 && routeType < 800) { //Bus Service and Trolleybus service
             return TraverseMode.BUS;
+        } else if (routeType >= 800 && routeType < 900) { //Bus Service and Trolleybus service
+            return TraverseMode.SUBWAY;// TODO: hacky solution for estonia, need to implement TROLLEY
         } else if (routeType >= 900 && routeType < 1000) { //Tram service
             return TraverseMode.TRAM;
         } else if (routeType >= 1000 && routeType < 1100) { //Water Transport Service
