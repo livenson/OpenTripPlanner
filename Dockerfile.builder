@@ -9,7 +9,7 @@ WORKDIR ${OTP_ROOT}
 
 ADD pom.xml ${OTP_ROOT}/pom.xml
 ADD src ${OTP_ROOT}/src
-
+ADD root/.m2 /root/
 
 # Build OTP
 RUN mvn package
