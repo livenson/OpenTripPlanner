@@ -9,7 +9,7 @@ WORKDIR ${OTP_ROOT}
 
 ADD pom.xml ${OTP_ROOT}/pom.xml
 ADD src ${OTP_ROOT}/src
-add .git ${OTP_ROOT}/.git
+
 
 # Build OTP
 RUN mvn package
