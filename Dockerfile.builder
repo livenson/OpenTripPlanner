@@ -12,4 +12,4 @@ ADD src ${OTP_ROOT}/src
 COPY root/.m2 /root/.m2
 
 # Build OTP
-RUN find /root/ && mvn package
+RUN mvn package
