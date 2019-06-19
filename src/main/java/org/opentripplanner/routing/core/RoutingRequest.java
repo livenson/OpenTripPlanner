@@ -300,7 +300,10 @@ public class RoutingRequest implements Cloneable, Serializable {
 
     /** Set of unpreferred agencies for given user. */
     public HashSet<String> unpreferredAgencies = new HashSet<String>();
-
+    
+    /** Set of bike rental networks that should be used in routing. */
+    public Set<String> allowedBikeRentalNetworks = null;
+    
     /**
      * Penalty added for using every unpreferred route. We return number of seconds that we are willing to wait for preferred route.
      */
@@ -676,10 +679,7 @@ public class RoutingRequest implements Cloneable, Serializable {
         if (!s.isEmpty()) {
             //RouteMatcher expects route ids in format [FeedId]__[RouteId] -> replace ":" in ids with "__"
             s = s.replaceAll(":", "__");
-
-            if (s != null && !s.equals("")) {
-                this.preferredRoutes.addRoutes(s);
-            }
+            this.preferredRoutes.addRoutes(s);
         }
     }
 
@@ -701,13 +701,18 @@ public class RoutingRequest implements Cloneable, Serializable {
         if (!s.isEmpty()) {
             //RouteMatcher expects route ids in format [FeedId]__[RouteId] -> replace ":" in ids with "__"
             s = s.replaceAll(":", "__");
-
-            if (s != null && !s.equals("")) {
-                this.unpreferredRoutes.addRoutes(s);
-            }
+            this.unpreferredRoutes.addRoutes(s);
         }
     }
-
+    
+    public void setAllowedBikeRentalNetworks(String s) {
+        allowedBikeRentalNetworks = new HashSet<>();
+        
+        if (!s.isEmpty()) {
+            Collections.addAll(allowedBikeRentalNetworks, s.split(","));
+        }
+    }
+    
     public void setUseUnpreferredRoutesPenalty(int penalty) {
         if (penalty < 0) {
             penalty = 0;
@@ -719,10 +724,7 @@ public class RoutingRequest implements Cloneable, Serializable {
         if (!s.isEmpty()) {
             //RouteMatcher expects route ids in format [FeedId]__[RouteId] -> replace ":" in ids with "__"
             s = s.replaceAll(":", "__");
-
-            if (s != null && !s.equals("")) {
-                this.bannedRoutes.addRoutes(s);
-            }
+            this.bannedRoutes.addRoutes(s);
         }
     }
 
@@ -1063,7 +1065,11 @@ public class RoutingRequest implements Cloneable, Serializable {
                 && disableAlertFiltering == other.disableAlertFiltering
                 && geoidElevation == other.geoidElevation
                 && this.carParkCarLegWeight == other.carParkCarLegWeight
-                && itineraryFiltering == other.itineraryFiltering;
+                && itineraryFiltering == other.itineraryFiltering
+                && allowedFares == null ? other.allowedFares == null
+                        : allowedFares.equals(other.allowedFares)
+                && allowedBikeRentalNetworks == null ? other.allowedBikeRentalNetworks == null
+                        : allowedBikeRentalNetworks.equals(other.allowedBikeRentalNetworks);
     }
 
     /**

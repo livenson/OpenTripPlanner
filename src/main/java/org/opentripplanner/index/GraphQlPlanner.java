@@ -258,12 +258,22 @@ public class GraphQlPlanner {
             request.setModes(request.modes);
         }
 
-        if (hasArgument(environment, "ticketTypes")) {
+        if (hasArgument(environment,  "allowedTicketTypes")) {
+            request.allowedFares = Sets.newHashSet();
+            ((List<String>)environment.getArgument("allowedTicketTypes")).forEach(ticketType -> request.allowedFares.add(ticketType.replaceFirst("_", ":")));
+        }
+
+        if (hasArgument(environment, "ticketTypes") && !hasArgument(environment, "allowedTicketTypes")) {
             String ticketTypes = environment.getArgument("ticketTypes"); // comma separated list e.g. "HSL_esp,HSL_van"
             request.allowedFares = Sets.newHashSet(ticketTypes);
             request.allowedFares.addAll(request.allowedFares.stream().map(val -> val.replaceFirst("_", ":")).collect(Collectors.toList()));
             //TODO should we increase max walk distance?
             //request.setMaxWalkDistance(request.getMaxWalkDistance()*2);
+        }
+
+        if (hasArgument(environment, "allowedBikeRentalNetworks")) {
+            ArrayList<String> allowedBikeRentalNetworks = environment.getArgument("allowedBikeRentalNetworks");
+            request.allowedBikeRentalNetworks = new HashSet<>(allowedBikeRentalNetworks);
         }
 
         if (request.allowBikeRental && !hasArgument(environment, "bikeSpeed")) {
