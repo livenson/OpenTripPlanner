@@ -35,7 +35,7 @@ function download_graph {
   NAME=$1
   VERSION=$2
   GRAPH_FILE=graph-$NAME.zip
-  URL=$(url $3 "graph-$NAME-$VERSION.zip")
+  URL=$(url $3 "graph-$NAME.zip")
   echo "Downloading graph from $URL"
   for i in {1..6}; do
     HTTP_STATUS=$(curl --write-out %{http_code} --silent --output $GRAPH_FILE $URL)
