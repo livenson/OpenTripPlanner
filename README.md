@@ -20,6 +20,7 @@ In summer of 2013, the OpenTripPlanner project was accepted for membership in th
 After seven years of hard work and almost 10,000 commits from over 100 contributors around the world, version 1.0 was released on 9 September 2016.
 
 
+
 ## Mailing Lists
 
 The main forums through which the OpenTripPlanner community organizes development and provides mutual assistance are our two Google discussion groups. Changes and extensions to OTP are debated on the developers' list (opentripplanner-dev). More general questions and announcements of interest to non-developer OTP users should be directed to the opentripplanner-users list.
