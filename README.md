@@ -22,5 +22,6 @@ After seven years of hard work and almost 10,000 commits from over 100 contribut
 
 
 ## Mailing Lists
+## Mailing Lists
 
 The main forums through which the OpenTripPlanner community organizes development and provides mutual assistance are our two Google discussion groups. Changes and extensions to OTP are debated on the developers' list (opentripplanner-dev). More general questions and announcements of interest to non-developer OTP users should be directed to the opentripplanner-users list.
