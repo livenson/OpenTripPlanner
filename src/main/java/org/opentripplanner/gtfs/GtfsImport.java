@@ -1,9 +1,13 @@
 package org.opentripplanner.gtfs;
 
+import org.onebusaway.csv_entities.schema.DefaultEntitySchemaFactory;
 import org.onebusaway.gtfs.impl.GtfsRelationalDaoImpl;
+import org.onebusaway.gtfs.model.Trip;
+import org.onebusaway.gtfs.serialization.GtfsEntitySchemaFactory;
 import org.onebusaway.gtfs.serialization.GtfsReader;
 import org.onebusaway.gtfs.services.GtfsMutableRelationalDao;
 import org.opentripplanner.graph_builder.module.GtfsFeedId;
+import org.opentripplanner.model.TripExtension;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +22,15 @@ public class GtfsImport {
     public GtfsImport(File path) throws IOException {
         GtfsReader reader = new GtfsReader();
         reader.setInputLocation(path);
+        setTripExtension(reader);
         readFeedId(reader);
         readDao(reader);
+    }
+
+    private void setTripExtension(GtfsReader reader) {
+        DefaultEntitySchemaFactory factory = GtfsEntitySchemaFactory.createEntitySchemaFactory();
+        factory.addExtension(Trip.class, TripExtension.class);
+        reader.setEntitySchemaFactory(factory);
     }
 
     public GtfsMutableRelationalDao getDao() {
