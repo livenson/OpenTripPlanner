@@ -44,7 +44,9 @@ class TripMapper {
         lhs.setTripBikesAllowed(rhs.getTripBikesAllowed());
         lhs.setBikesAllowed(rhs.getBikesAllowed());
         lhs.setFareId(rhs.getFareId());
-        lhs.setTripLongName(extension.getTripLongName());
+        String tripLongName = extension.getTripLongName();
+        System.out.println("TRIP LONG NAME: " + tripLongName);
+        lhs.setTripLongName(tripLongName);
 
         return lhs;
     }

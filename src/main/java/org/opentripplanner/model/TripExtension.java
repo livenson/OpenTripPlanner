@@ -4,7 +4,7 @@ import org.onebusaway.csv_entities.schema.annotations.CsvField;
 
 public class TripExtension {
 
-    @CsvField(optional = true)
+    @CsvField(defaultValue = "DefultTripLongName")
     private String tripLongName;
 
     public String getTripLongName() { return tripLongName; }
