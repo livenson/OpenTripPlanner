@@ -18,6 +18,7 @@ public class TripType {
         this.id = obj.getId();
         this.serviceId = obj.getServiceId();
         this.tripShortName = obj.getTripShortName();
+        this.tripLongName = obj.getTripLongName();
         this.tripHeadsign = obj.getTripHeadsign();
         this.routeId = obj.getRoute().getId();
         this.directionId = obj.getDirectionId();
@@ -33,6 +34,7 @@ public class TripType {
     public TripType(Trip obj, Boolean extended) {
         this.id = obj.getId();
         this.tripShortName = obj.getTripShortName();
+        this.tripLongName = obj.getTripLongName();
         this.tripHeadsign = obj.getTripHeadsign();
         if (extended != null && extended.equals(true)) {
             this.route = obj.getRoute();
@@ -61,6 +63,10 @@ public class TripType {
     @XmlAttribute
     @JsonSerialize
     String tripShortName;
+
+    @XmlAttribute
+    @JsonSerialize
+    String tripLongName;
 
     @XmlAttribute
     @JsonSerialize

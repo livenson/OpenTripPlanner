@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.onebusaway.gtfs.model.AgencyAndId;
 import org.onebusaway.gtfs.model.Route;
 import org.onebusaway.gtfs.model.Trip;
+import org.opentripplanner.model.TripExtension;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +34,8 @@ public class TripMapperTest {
 
     private static final String TRIP_SHORT_NAME = "Trip Short Name";
 
+    private static final String TRIP_LONG_NAME = "Trip Long Name";
+
     private static final int WHEELCHAIR_ACCESSIBLE = 2;
 
     private static final int TRIP_BIKES_ALLOWED = 2;
@@ -55,6 +58,7 @@ public class TripMapperTest {
         TRIP.setTripShortName(TRIP_SHORT_NAME);
         TRIP.setWheelchairAccessible(WHEELCHAIR_ACCESSIBLE);
         TRIP.setTripBikesAllowed(TRIP_BIKES_ALLOWED);
+        TRIP.putExtension(TripExtension.class, new TripExtension(TRIP_LONG_NAME));
     }
 
     private TripMapper subject = new TripMapper(new RouteMapper(new AgencyMapper()));
@@ -89,7 +93,7 @@ public class TripMapperTest {
     public void testMapWithNulls() throws Exception {
         Trip input = new Trip();
         input.setId(AGENCY_AND_ID);
-
+        input.putExtension(TripExtension.class, null);
         org.opentripplanner.model.Trip result = subject.map(input);
 
         assertNotNull(result.getId());

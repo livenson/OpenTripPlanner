@@ -150,7 +150,11 @@ public class Leg {
     @JsonSerialize
     public String tripShortName = null;
 
-    /**
+     @XmlAttribute
+     @JsonSerialize
+     public String tripLongName = null;
+
+     /**
      * For transit leg, the trip's block ID (if one exists). For non-transit legs, null.
      */
     @XmlAttribute
