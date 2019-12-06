@@ -65,7 +65,11 @@ public enum ResourceBundleSingleton {
         String[] localeSpecParts = localeSpec.split("_");
         switch (localeSpecParts.length) {
             case 1:
+                locale = new Locale(localeSpecParts[0]);
+                break;
             case 2:
+                locale = new Locale(localeSpecParts[0]);
+                break;
             case 3:
                 locale = new Locale(localeSpecParts[0]);
                 break;
