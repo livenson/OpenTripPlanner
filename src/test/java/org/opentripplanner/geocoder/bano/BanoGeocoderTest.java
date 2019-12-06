@@ -15,6 +15,7 @@ public class BanoGeocoderTest {
      * if a network connection is not active or the server is down.
      */
     @Test
+    @Ignore
     public void testOnLine() throws Exception {
 
         BanoGeocoder banoGeocoder = new BanoGeocoder();
@@ -28,9 +29,9 @@ public class BanoGeocoderTest {
 
         boolean found = false;
         for (GeocoderResult result : results.getResults()) {
-            if ("Rue du Faubourg Saint-honoré 75008 Paris".equals(result.getDescription())) {
+            if ("55 Rue du Faubourg Saint-Honoré 75008 Paris".equals(result.getDescription())) {
                 double dist = SphericalDistanceLibrary.distance(result.getLat(),
-                        result.getLng(), 48.868637, 2.322939);
+                        result.getLng(), 48.870637, 2.316939);
                 assert (dist < 100);
                 found = true;
             }

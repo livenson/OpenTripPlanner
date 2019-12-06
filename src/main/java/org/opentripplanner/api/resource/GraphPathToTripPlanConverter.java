@@ -606,7 +606,6 @@ public abstract class GraphPathToTripPlanConverter {
             leg.routeBrandingUrl = route.getBrandingUrl();
             leg.tripId = trip.getId();
             leg.tripShortName = trip.getTripShortName();
-            leg.tripLongName = trip.getTripLongName();
             leg.tripBlockId = trip.getBlockId();
 
             if (serviceDay != null) {

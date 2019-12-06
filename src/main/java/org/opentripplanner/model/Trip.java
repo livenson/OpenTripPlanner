@@ -13,8 +13,6 @@ public final class Trip extends IdentityBean<FeedScopedId> {
 
     private String tripShortName;
 
-    private String tripLongName;
-
     private String tripHeadsign;
 
     private String routeShortName;
@@ -45,7 +43,6 @@ public final class Trip extends IdentityBean<FeedScopedId> {
         this.route = obj.route;
         this.serviceId = obj.serviceId;
         this.tripShortName = obj.tripShortName;
-        this.tripLongName = obj.tripLongName;
         this.tripHeadsign = obj.tripHeadsign;
         this.routeShortName = obj.routeShortName;
         this.directionId = obj.directionId;
@@ -88,15 +85,6 @@ public final class Trip extends IdentityBean<FeedScopedId> {
     public void setTripShortName(String tripShortName) {
         this.tripShortName = tripShortName;
     }
-
-    public String getTripLongName() {
-        return tripLongName;
-    }
-
-    public void setTripLongName(String tripLongName) {
-        this.tripLongName = tripLongName;
-    }
-
 
     public String getTripHeadsign() {
         return tripHeadsign;
