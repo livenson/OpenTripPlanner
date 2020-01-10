@@ -309,10 +309,10 @@ public class TestOpenStreetMapGraphBuilder extends TestCase {
     @Test
     public void testLocalizedString() {
         LocalizedString localizedString = new LocalizedString("corner",
-                new String[]{"first", "second"});
+                new String[]{"esimene", "teine"});
 
-        assertEquals("corner of first and second", localizedString.toString());
-        assertEquals("Kreuzung first mit second",
+        assertEquals("esimene ja teine nurgalt", localizedString.toString());
+        assertEquals("Kreuzung esimene mit teine",
                 localizedString.toString(new Locale("de")));
     }
 

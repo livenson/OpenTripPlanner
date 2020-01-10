@@ -153,7 +153,7 @@ public class RoutingRequest implements Cloneable, Serializable {
 
     public Set<String>allowedFares = null;
 
-    public Locale locale = new Locale("en", "US");
+    public Locale locale = new Locale("et");
 
     /**
      * An extra penalty added on transfers (i.e. all boardings except the first one).

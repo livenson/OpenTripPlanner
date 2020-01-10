@@ -17,7 +17,7 @@ public enum ResourceBundleSingleton {
 
     //TODO: this is not the only place default is specified
     //It is also specified in RoutingResource and RoutingRequest
-    private final Locale defaultLocale = new Locale("en");
+    private final Locale defaultLocale = new Locale("et");
 
     public Locale getDefaultLocale() {
         return defaultLocale;
@@ -68,6 +68,7 @@ public enum ResourceBundleSingleton {
             case 2:
             case 3:
                 locale = new Locale(localeSpecParts[0]);
+                LOG.debug("New locale language from spec parts: " + locale.getLanguage());
                 break;
             default:
                 LOG.debug("Bogus locale " + localeSpec + ", defaulting to " + defaultLocale.toLanguageTag());

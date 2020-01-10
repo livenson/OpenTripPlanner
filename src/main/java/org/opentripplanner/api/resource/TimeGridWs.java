@@ -118,7 +118,7 @@ public class TimeGridWs extends RoutingResource {
         pw.getMetadata().setText(PngChunkTextVar.KEY_Creation_Time, new Date().toString());
         pw.getMetadata().setText(PngChunkTextVar.KEY_Description, "Sample grid bitmap");
 
-        String gridCornerStr = String.format(Locale.US, "%.8f,%.8f", sampleGrid.getCenter().y
+        String gridCornerStr = String.format(Locale.getDefault(), "%.8f,%.8f", sampleGrid.getCenter().y
                 + sampleGrid.getYMin() * sampleGrid.getCellSize().y, sampleGrid.getCenter().x
                 + sampleGrid.getXMin() * sampleGrid.getCellSize().x);
         String gridCellSzStr = String.format(Locale.US, "%.12f,%.12f", sampleGrid.getCellSize().y,
