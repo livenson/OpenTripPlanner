@@ -1,6 +1,7 @@
 package org.opentripplanner.gtfs.mapping;
 
 import org.opentripplanner.model.Trip;
+import org.opentripplanner.model.TripExtension;
 import org.opentripplanner.util.MapUtils;
 
 import java.util.Collection;
@@ -29,6 +30,7 @@ class TripMapper {
     private Trip doMap(org.onebusaway.gtfs.model.Trip rhs) {
         Trip lhs = new Trip();
 
+        TripExtension extension = rhs.getExtension(TripExtension.class);
         lhs.setId(AgencyAndIdMapper.mapAgencyAndId(rhs.getId()));
         lhs.setRoute(routeMapper.map(rhs.getRoute()));
         lhs.setServiceId(AgencyAndIdMapper.mapAgencyAndId(rhs.getServiceId()));
@@ -42,6 +44,9 @@ class TripMapper {
         lhs.setTripBikesAllowed(rhs.getTripBikesAllowed());
         lhs.setBikesAllowed(rhs.getBikesAllowed());
         lhs.setFareId(rhs.getFareId());
+        if (extension != null) {
+            lhs.setTripLongName(extension.getTripLongName());
+        }
 
         return lhs;
     }
