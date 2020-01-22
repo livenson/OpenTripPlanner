@@ -17,8 +17,12 @@ public class TripExtension {
     )
     private String tripLongName;
 
-    public String getTripLongName() { return tripLongName; }
+    public String getTripLongName() {
+        return tripLongName;
+    }
 
-    public void setTripLongName(String tripLongName) { this.tripLongName = tripLongName; }
+    public void setTripLongName(String tripLongName) {
+        this.tripLongName = tripLongName;
+    }
 
 }

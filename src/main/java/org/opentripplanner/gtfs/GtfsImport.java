@@ -12,6 +12,7 @@ import org.opentripplanner.model.TripExtension;
 import java.io.File;
 import java.io.IOException;
 
+/** This class is used for reading gtfs files that are used for tests. */
 public class GtfsImport {
 
 

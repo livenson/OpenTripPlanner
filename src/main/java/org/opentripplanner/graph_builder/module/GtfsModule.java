@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.onebusaway.csv_entities.EntityHandler;
+import org.onebusaway.csv_entities.schema.DefaultEntitySchemaFactory;
 import org.onebusaway.gtfs.impl.GtfsRelationalDaoImpl;
 import org.onebusaway.gtfs.model.Agency;
 import org.onebusaway.gtfs.model.FareAttribute;
@@ -24,6 +25,7 @@ import org.onebusaway.gtfs.model.ServiceCalendarDate;
 import org.onebusaway.gtfs.model.ShapePoint;
 import org.onebusaway.gtfs.model.Stop;
 import org.onebusaway.gtfs.model.Trip;
+import org.onebusaway.gtfs.serialization.GtfsEntitySchemaFactory;
 import org.onebusaway.gtfs.serialization.GtfsReader;
 import org.onebusaway.gtfs.services.GenericMutableDao;
 import org.onebusaway.gtfs.services.GtfsMutableRelationalDao;
@@ -34,6 +36,7 @@ import org.opentripplanner.gtfs.BikeAccess;
 import org.opentripplanner.gtfs.GtfsContext;
 import org.opentripplanner.gtfs.GtfsLibrary;
 import org.opentripplanner.model.OtpTransitService;
+import org.opentripplanner.model.TripExtension;
 import org.opentripplanner.routing.edgetype.factory.PatternHopFactory;
 import org.opentripplanner.routing.edgetype.factory.GtfsStopContext;
 import org.opentripplanner.routing.graph.Graph;
@@ -169,6 +172,7 @@ public class GtfsModule implements GraphBuilderModule {
         reader.setEntityStore(store);
         reader.setInternStrings(true);
         reader.setDefaultAgencyId(gtfsFeedId.getId());
+        setTripExtension(reader);
 
         if (LOG.isDebugEnabled())
             reader.addEntityHandler(counter);
@@ -234,6 +238,16 @@ public class GtfsModule implements GraphBuilderModule {
 
         store.close();
         return store.dao;
+    }
+
+
+    /**
+     * Trip extension for reading non-standard gtfs fields
+     */
+    private void setTripExtension(GtfsReader reader) {
+        DefaultEntitySchemaFactory factory = GtfsEntitySchemaFactory.createEntitySchemaFactory();
+        factory.addExtension(Trip.class, TripExtension.class);
+        reader.setEntitySchemaFactory(factory);
     }
 
     /**
