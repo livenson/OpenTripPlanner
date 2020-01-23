@@ -34,6 +34,8 @@ public class TripMapperTest {
 
     private static final String TRIP_SHORT_NAME = "Trip Short Name";
 
+    private static final String TRIP_LONG_NAME = "Trip Long Name";
+
     private static final int WHEELCHAIR_ACCESSIBLE = 2;
 
     private static final int TRIP_BIKES_ALLOWED = 2;
@@ -69,6 +71,9 @@ public class TripMapperTest {
 
     @Test
     public void testMap() throws Exception {
+        TripExtension extension = new TripExtension();
+        extension.setTripLongName(TRIP_LONG_NAME);
+        TRIP.putExtension(TripExtension.class, extension);
         org.opentripplanner.model.Trip result = subject.map(TRIP);
 
         assertEquals("A:1", result.getId().toString());
@@ -82,6 +87,8 @@ public class TripMapperTest {
         assertEquals("A:1", result.getShapeId().toString());
         assertEquals(TRIP_HEADSIGN, result.getTripHeadsign());
         assertEquals(TRIP_SHORT_NAME, result.getTripShortName());
+        assertNotNull(TRIP.getExtension(TripExtension.class));
+        assertEquals(TRIP_LONG_NAME, result.getTripLongName());
         assertEquals(WHEELCHAIR_ACCESSIBLE, result.getWheelchairAccessible());
         assertEquals(TRIP_BIKES_ALLOWED, result.getTripBikesAllowed());
     }
