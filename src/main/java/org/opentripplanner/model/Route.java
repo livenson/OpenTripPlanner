@@ -36,6 +36,8 @@ public final class Route extends IdentityBean<FeedScopedId> {
 
     private String brandingUrl;
 
+    private String competentAuthority;
+
     public FeedScopedId getId() {
         return id;
     }
@@ -151,6 +153,14 @@ public final class Route extends IdentityBean<FeedScopedId> {
 
     public void setBrandingUrl(String brandingUrl) {
         this.brandingUrl = brandingUrl;
+    }
+
+    public String getCompetentAuthority() {
+        return competentAuthority;
+    }
+
+    public void setCompetentAuthority(String competentAuthority) {
+        this.competentAuthority = competentAuthority;
     }
 
     @Override

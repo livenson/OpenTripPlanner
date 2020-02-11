@@ -36,6 +36,7 @@ import org.opentripplanner.gtfs.BikeAccess;
 import org.opentripplanner.gtfs.GtfsContext;
 import org.opentripplanner.gtfs.GtfsLibrary;
 import org.opentripplanner.model.OtpTransitService;
+import org.opentripplanner.model.RouteExtension;
 import org.opentripplanner.model.TripExtension;
 import org.opentripplanner.routing.edgetype.factory.PatternHopFactory;
 import org.opentripplanner.routing.edgetype.factory.GtfsStopContext;
@@ -172,7 +173,7 @@ public class GtfsModule implements GraphBuilderModule {
         reader.setEntityStore(store);
         reader.setInternStrings(true);
         reader.setDefaultAgencyId(gtfsFeedId.getId());
-        setTripExtension(reader);
+        setAdditionalModalExtensions(reader);
 
         if (LOG.isDebugEnabled())
             reader.addEntityHandler(counter);
@@ -240,12 +241,12 @@ public class GtfsModule implements GraphBuilderModule {
         return store.dao;
     }
 
-
     /**
-     * Trip extension for reading non-standard gtfs fields
+     * Route and Trip extensions for reading non-standard gtfs fields
      */
-    private void setTripExtension(GtfsReader reader) {
+    private void setAdditionalModalExtensions(GtfsReader reader) {
         DefaultEntitySchemaFactory factory = GtfsEntitySchemaFactory.createEntitySchemaFactory();
+        factory.addExtension(Route.class, RouteExtension.class);
         factory.addExtension(Trip.class, TripExtension.class);
         reader.setEntitySchemaFactory(factory);
     }

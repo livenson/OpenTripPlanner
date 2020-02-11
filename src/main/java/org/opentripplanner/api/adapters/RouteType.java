@@ -28,6 +28,7 @@ public class RouteType {
         this.routeType = route.getType();
         this.routeUrl = route.getUrl();
         this.routeColor = route.getColor();
+        this.competentAuthority = route.getCompetentAuthority();
         this.routeTextColor = route.getTextColor();
         this.routeBikesAllowed = route.getBikesAllowed();
     }
@@ -37,6 +38,7 @@ public class RouteType {
         this.routeShortName = route.getShortName();
         this.routeType = route.getType();
         this.routeLongName = route.getLongName();
+        this.competentAuthority = route.getCompetentAuthority();
         if (extended != null && extended.equals(true)) {
             this.routeDesc = route.getDesc();
             this.routeType = route.getType();
@@ -77,6 +79,10 @@ public class RouteType {
     @XmlAttribute
     @JsonSerialize
     String routeColor;
+
+    @XmlAttribute
+    @JsonSerialize
+    String competentAuthority;
 
     @XmlAttribute
     @JsonSerialize

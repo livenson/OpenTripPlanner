@@ -1,0 +1,21 @@
+Saare MV,Saaremaa
+Lääne-Viru MV,Lääne-Virumaa
+Pärnu LV,Pärnu linn
+Tartu LV,Tartu linn
+Rapla MV,Raplamaa
+Võru MV,Võrumaa
+Valga MV,Valgamaa
+Järvamaa ÜTK,Järvamaa
+Lääne MV,Läänemaa
+Ida-Viru MV,Ida-Virumaa
+Tallinna TA,Tallinna linn
+Viljandi MV,Viljandimaa
+Kohtla-Järve LV,Kohtla-Järve linn
+Jõgeva ÜTK,Jõgevamaa
+Harjumaa ÜTK,Harjumaa
+Tartu MV,Tartumaa
+Põlva MV,Põlvamaa
+Narva LV,Narva linn
+Hiiu MV,Hiiumaa
+Pärnu MV,Pärnumaa
+Sillamäe LV,Sillamäe linn

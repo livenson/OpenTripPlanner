@@ -1,6 +1,8 @@
 package org.opentripplanner.gtfs.mapping;
 
+import org.opentripplanner.gtfs.CompetentAuthorityTable;
 import org.opentripplanner.model.Route;
+import org.opentripplanner.model.RouteExtension;
 import org.opentripplanner.util.MapUtils;
 
 import java.util.Collection;
@@ -12,6 +14,8 @@ class RouteMapper {
     private final AgencyMapper agencyMapper;
 
     private final Map<org.onebusaway.gtfs.model.Route, Route> mappedRoutes = new HashMap<>();
+
+    private static final CompetentAuthorityTable COMPETENT_AUTHORITY_TABLE = new CompetentAuthorityTable("src/main/resources/org/opentripplanner/competent_authority.txt");
 
     RouteMapper(AgencyMapper agencyMapper) {
         this.agencyMapper = agencyMapper;
@@ -28,6 +32,7 @@ class RouteMapper {
 
     private Route doMap(org.onebusaway.gtfs.model.Route rhs) {
         Route lhs = new Route();
+        RouteExtension extension = rhs.getExtension(RouteExtension.class);
 
         lhs.setId(AgencyAndIdMapper.mapAgencyAndId(rhs.getId()));
         lhs.setAgency(agencyMapper.map(rhs.getAgency()));
@@ -42,6 +47,10 @@ class RouteMapper {
         lhs.setBikesAllowed(rhs.getBikesAllowed());
         lhs.setSortOrder(rhs.getSortOrder());
         lhs.setBrandingUrl(rhs.getBrandingUrl());
+        if (extension != null) {
+            Map<String, String> authorities = COMPETENT_AUTHORITY_TABLE.getAuthorities();
+            lhs.setCompetentAuthority(authorities.getOrDefault(extension.getCompetentAuthority(), ""));
+        }
 
         return lhs;
     }
